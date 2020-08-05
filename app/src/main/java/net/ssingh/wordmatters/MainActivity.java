@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private int maxPresCounter = 4;
     private String[] keys = {"R", "I", "B", "D", "X"};
     private String textAnswer = "BIRD";
-    TextView textScreen, textQuestion, textTitle;
+    TextView textQuestion, textTitle;
     Animation smallbigforth;
 
     @Override
@@ -76,11 +76,9 @@ public class MainActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FredokaOne-Regular.ttf");
 
         textQuestion = findViewById(R.id.textQuestion);
-        textScreen = findViewById(R.id.textScreen);
         textTitle = findViewById(R.id.textTitle);
 
         textQuestion.setTypeface(typeface);
-        textScreen.setTypeface(typeface);
         textTitle.setTypeface(typeface);
         editText.setTypeface(typeface);
         textView.setTypeface(typeface);
@@ -130,12 +128,19 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(a);
                     editText.setText("");
                 }
-            }, 500);
+            }, 200);
 
 
         } else {
-            Toast.makeText(MainActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
-            editText.setText("");
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(MainActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
+                    editText.setText("");
+                }
+            }, 200);
+
         }
 
         keys = shuffleArray(keys);

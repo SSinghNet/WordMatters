@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class BossAct extends AppCompatActivity {
 
-    TextView textScreen, textQuestion, textTitle, textBtn;
+    TextView textQuestion, textTitle, textBtn;
     ImageView bigboss;
     Animation smalltobig;
 
@@ -22,10 +22,9 @@ public class BossAct extends AppCompatActivity {
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FredokaOneRegular.ttf");
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FredokaOne-Regular.ttf");
 
         textQuestion = findViewById(R.id.textQuestion);
-        textScreen = findViewById(R.id.textScreen);
         textTitle = findViewById(R.id.textTitle);
         textBtn = findViewById(R.id.textBtn);
 
@@ -34,7 +33,6 @@ public class BossAct extends AppCompatActivity {
 
 
         textQuestion.setTypeface(typeface);
-        textScreen.setTypeface(typeface);
         textTitle.setTypeface(typeface);
         textBtn.setTypeface(typeface);
     }

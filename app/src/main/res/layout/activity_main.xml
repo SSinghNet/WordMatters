@@ -8,15 +8,6 @@
     android:background = "@drawable/bgapp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textScreen"
-        android:layout_margin="40dp"
-        android:layout_gravity="center"
-        android:textColor="#FFF"
-        android:textSize="22sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="In Fight Battle" />
 
     <LinearLayout
         android:background="@drawable/bgquestion"
@@ -59,7 +50,7 @@
 
     <TextView
         android:id="@+id/textTitle"
-        android:text="Ammo"
+        android:text="Letters"
         android:textSize="24sp"
         android:textColor="#FFF"
         android:layout_marginRight="28dp"
