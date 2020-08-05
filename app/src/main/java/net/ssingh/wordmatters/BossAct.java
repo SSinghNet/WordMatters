@@ -22,7 +22,7 @@ public class BossAct extends AppCompatActivity {
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FredokaOne-Regular.ttf");
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FredokaOneRegular.ttf");
 
         textQuestion = findViewById(R.id.textQuestion);
         textScreen = findViewById(R.id.textScreen);

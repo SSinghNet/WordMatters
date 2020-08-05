@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         return ar;
     }
 
-
     private void addView(LinearLayout viewParent, final String text, final EditText editText) {
         LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -65,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutParams.rightMargin = 30;
 
         final TextView textView = new TextView(this);
-
         textView.setLayoutParams(linearLayoutParams);
         textView.setBackground(this.getResources().getDrawable(R.drawable.bgpink));
         textView.setTextColor(this.getResources().getColor(R.color.colorPurple));
@@ -88,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         textView.setTypeface(typeface);
 
         textView.setOnClickListener(new View.OnClickListener() {
-
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
@@ -109,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         viewParent.addView(textView);
 
@@ -147,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
         for (String key : keys) {
             addView(linearLayout, key, editText);
         }
-
     }
-
 
 }
