@@ -1,11 +1,10 @@
 package net.ssingh.wordmatters;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
@@ -37,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
 
         keys = shuffleArray(keys);
 
-        for (String key: keys){
-            addView((LinearLayout) findViewById(R.id.layoutParent), key, ((EditText) findViewById(R.id.editText)));
+        for (String key : keys) {
+            addView(((LinearLayout) findViewById(R.id.layoutParent)), key, ((EditText) findViewById(R.id.editText)));
         }
 
         maxPresCounter = 4;
     }
 
 
-    private String[] shuffleArray(String[] ar){
+    private String[] shuffleArray(String[] ar) {
         Random rnd = new Random();
-        for(int i = ar.length - 1; i > 0;i--){
+        for (int i = ar.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
             String a = ar[index];
             ar[index] = ar[i];
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return ar;
     }
+
 
     private void addView(LinearLayout viewParent, final String text, final EditText editText) {
         LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutParams.rightMargin = 30;
 
         final TextView textView = new TextView(this);
+
         textView.setLayoutParams(linearLayoutParams);
         textView.setBackground(this.getResources().getDrawable(R.drawable.bgpink));
         textView.setTextColor(this.getResources().getColor(R.color.colorPurple));
@@ -87,50 +88,67 @@ public class MainActivity extends AppCompatActivity {
         textView.setTypeface(typeface);
 
         textView.setOnClickListener(new View.OnClickListener() {
+
             @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view) {
-                if (presCounter < maxPresCounter) {
-                    if (presCounter == 0) {
+            public void onClick(View v) {
+                if(presCounter < maxPresCounter) {
+                    if (presCounter == 0){
                         editText.setText("");
                     }
 
                     editText.setText(editText.getText().toString() + text);
                     textView.startAnimation(smallbigforth);
                     textView.animate().alpha(0).setDuration(300);
+                    textView.setClickable(false);
                     presCounter++;
 
-                    if (presCounter == maxPresCounter) {
+                    if (presCounter == maxPresCounter){
                         doValidate();
                     }
                 }
             }
         });
 
+
         viewParent.addView(textView);
+
+
     }
 
-    private void doValidate(){
+
+    private void doValidate() {
         presCounter = 0;
-        EditText editText = findViewById(R.id.editText);
+
+        final EditText editText = findViewById(R.id.editText);
         LinearLayout linearLayout = findViewById(R.id.layoutParent);
 
-        if(editText.getText().toString().equals(textAnswer)){
-            //Toast.makeText(MainActivity.this, "Correct", Toast.LENGTH_SHORT).show();
-            Intent a = new Intent(MainActivity.this, BossAct.class);
-            startActivity(a);
+        if(editText.getText().toString().equals(textAnswer)) {
+//            Toast.makeText(MainActivity.this, "Correct", Toast.LENGTH_SHORT).show();
 
-            editText.setText("");
-        }else{
-            Toast.makeText(MainActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent a = new Intent(MainActivity.this,BossAct.class);
+                    startActivity(a);
+                    editText.setText("");
+                }
+            }, 500);
+
+
+        } else {
+            Toast.makeText(MainActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
             editText.setText("");
         }
 
         keys = shuffleArray(keys);
         linearLayout.removeAllViews();
-        for(String key: keys){
+        for (String key : keys) {
             addView(linearLayout, key, editText);
         }
+
     }
+
 
 }
