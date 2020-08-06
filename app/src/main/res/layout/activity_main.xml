@@ -8,10 +8,20 @@
     android:background = "@drawable/bgapp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/levelNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="24sp"
+        android:textColor="#332FA2"
+        android:gravity="center"
+        android:layout_marginTop="25dp"
+        />
 
     <LinearLayout
         android:background="@drawable/bgquestion"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:gravity="center"
@@ -28,13 +38,13 @@
             android:lineSpacingExtra="6dp"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:text="Guess Animals" />
+            android:text="" />
 
     </LinearLayout>
 
     <EditText
         android:id="@+id/editText"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bgpurple"
         android:layout_width="200dp"
         android:layout_height="80dp"
@@ -47,6 +57,16 @@
         android:padding="10dp"
         android:text=""
         android:layout_marginTop="70dp"/>
+
+    <TextView
+        android:id="@+id/numLetters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="24sp"
+        android:textColor="#332FA2"
+        android:gravity="center"
+        android:layout_marginBottom="30dp" />
 
     <TextView
         android:id="@+id/textTitle"

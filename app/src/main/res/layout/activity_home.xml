@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background = "@drawable/bgapp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/bigboss"
+        android:src="@drawable/icboss"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_margin="30dp"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPurple"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:text="Word Matters"
+        android:layout_width="400dp" />
+
+    <Button
+        android:id="@+id/textPlay"
+        android:layout_marginTop="40dp"
+        android:textAllCaps="false"
+        android:text="PLAY"
+        android:textColor="@color/colorPurple"
+        android:textSize="28sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/bgbtn"
+        android:layout_width="280dp"
+        android:layout_height="80dp" />
+
+
+
+</LinearLayout>

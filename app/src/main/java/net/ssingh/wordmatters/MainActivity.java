@@ -21,11 +21,12 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private int presCounter = 0;
-    private int maxPresCounter = 4;
-    private String[] keys = {"R", "I", "B", "D", "X"};
+    private String[] keys;
     private String textAnswer = "BIRD";
-    TextView textQuestion, textTitle;
+    private int maxPresCounter = textAnswer.length();
+    TextView textQuestion, textTitle, numLetters, levelNum;
     Animation smallbigforth;
+    int value = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +34,63 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         smallbigforth = AnimationUtils.loadAnimation(this, R.anim.smallbigforth);
+        numLetters = findViewById(R.id.numLetters);
+        levelNum = findViewById(R.id.levelNum);
+        textQuestion = findViewById(R.id.textQuestion);
 
+        Bundle b = getIntent().getExtras();
+
+        if(b != null){
+            value = b.getInt("level");
+        }
+
+        switch(value){
+            case 1:
+                keys = new String[]{"T", "I", "G", "E", "R", "A"};
+                textAnswer = "TIGER";
+                textQuestion.setText("Category: Animals");
+                break;
+            case 2:
+                keys = new String[]{"E", "E", "L", "G", "F", "L"};
+                textAnswer = "EEL";
+                textQuestion.setText("Category: Animals");
+                break;
+            case 3:
+                keys = new String[]{"E", "E", "L", "M", "U", "L"};
+                textAnswer = "EMU";
+                textQuestion.setText("Category: Animals");
+                break;
+            case 4:
+                keys = new String[]{"N", "O", "L", "M", "I", "L"};
+                textAnswer = "LION";
+                textQuestion.setText("Category: Animals");
+                break;
+            case 5:
+                keys = new String[]{"N", "B", "L", "M", "E", "U"};
+                textAnswer = "BLUE";
+                textQuestion.setText("Category: Colors");
+                break;
+            case 6:
+                keys = new String[]{"R", "O", "N", "A", "G", "E"};
+                textAnswer = "ORANGE";
+                textQuestion.setText("Category: Colors");
+                break;
+            default:
+                keys = new String[]{"B", "I", "R", "D", "X", "C"};
+                textAnswer = "BIRD";
+                textQuestion.setText("Category: Animals");
+                break;
+        }
+        numLetters.setText(String.valueOf(textAnswer.length()));
+        levelNum.setText("Level " + (value + 1));
         keys = shuffleArray(keys);
+
 
         for (String key : keys) {
             addView(((LinearLayout) findViewById(R.id.layoutParent)), key, ((EditText) findViewById(R.id.editText)));
         }
+        maxPresCounter = textAnswer.length();
 
-        maxPresCounter = 4;
     }
 
 
@@ -60,8 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-
         linearLayoutParams.rightMargin = 30;
+        linearLayoutParams.height = getResources().getDimensionPixelSize(R.dimen.text_view_height);
+        linearLayoutParams.width = getResources().getDimensionPixelSize(R.dimen.text_view_width);
 
         final TextView textView = new TextView(this);
         textView.setLayoutParams(linearLayoutParams);
@@ -71,13 +122,17 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(text);
         textView.setClickable(true);
         textView.setFocusable(true);
-        textView.setTextSize(32);
+        textView.setTextSize(16);
+
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FredokaOne-Regular.ttf");
 
         textQuestion = findViewById(R.id.textQuestion);
         textTitle = findViewById(R.id.textTitle);
+        levelNum = findViewById(R.id.levelNum);
 
+        levelNum.setTypeface(typeface);
+        numLetters.setTypeface(typeface);
         textQuestion.setTypeface(typeface);
         textTitle.setTypeface(typeface);
         editText.setTypeface(typeface);
@@ -106,8 +161,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewParent.addView(textView);
-
-
     }
 
 
@@ -125,10 +178,14 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent a = new Intent(MainActivity.this,BossAct.class);
+                    Bundle b = new Bundle();
+                    b.putInt("currentLevel", value); //Your id
+                    a.putExtras(b); //Put your id to your next Intent
                     startActivity(a);
+                    finish();
                     editText.setText("");
                 }
-            }, 200);
+            }, 25);
 
 
         } else {
@@ -139,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
                     editText.setText("");
                 }
-            }, 200);
+            }, 50);
 
         }
 
