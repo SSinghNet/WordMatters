@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 textQuestion.setText("Category: Animals");
                 break;
             case 2:
-                keys = new String[]{"E", "E", "L", "G", "F", "L"};
-                textAnswer = "EEL";
+                keys = new String[]{"H", "O", "R", "S", "E", "L"};
+                textAnswer = "HORSE";
                 textQuestion.setText("Category: Animals");
                 break;
             case 3:
@@ -73,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
             case 6:
                 keys = new String[]{"R", "O", "N", "A", "G", "E"};
                 textAnswer = "ORANGE";
+                textQuestion.setText("Category: Colors");
+                break;
+            case 7:
+                keys = new String[]{"P", "U", "R", "P", "L", "E"};
+                textAnswer = "PURPLE";
                 textQuestion.setText("Category: Colors");
                 break;
             default:

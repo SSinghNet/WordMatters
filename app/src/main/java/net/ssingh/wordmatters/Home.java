@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
 
-    TextView textPlay, textTitle;
+    TextView textPlay, textTitle, textRestart;
     ImageView bigboss;
 
     @Override
@@ -21,12 +21,14 @@ public class Home extends AppCompatActivity {
 
         textPlay = findViewById(R.id.textPlay);
         textTitle = findViewById(R.id.textTitle);
+        textRestart = findViewById(R.id.textRestart);
         bigboss = findViewById(R.id.bigboss);
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FredokaOne-Regular.ttf");
 
         textPlay.setTypeface(typeface);
         textTitle.setTypeface(typeface);
+        textRestart.setTypeface(typeface);
 
         Bundle b = getIntent().getExtras();
         int value = 0;
@@ -41,6 +43,17 @@ public class Home extends AppCompatActivity {
                 Intent a = new Intent(Home.this, MainActivity.class);
                 Bundle b = new Bundle();
                 b.putInt("level", finalValue); //Your id
+                a.putExtras(b); //Put your id to your next Intent
+                startActivity(a);
+            }
+        });
+
+        textRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(Home.this, MainActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("level", 0); //Your id
                 a.putExtras(b); //Put your id to your next Intent
                 startActivity(a);
             }

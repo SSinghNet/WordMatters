@@ -29,7 +29,7 @@
 
     <Button
         android:id="@+id/textPlay"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:textAllCaps="false"
         android:text="PLAY"
         android:textColor="@color/colorPurple"
@@ -39,6 +39,19 @@
         android:background="@drawable/bgbtn"
         android:layout_width="280dp"
         android:layout_height="80dp" />
+
+    <Button
+        android:id="@+id/textRestart"
+        android:layout_marginTop="50dp"
+        android:textAllCaps="false"
+        android:text="RESTART"
+        android:textColor="@color/colorPurple"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/bgbtn"
+        android:layout_width="250dp"
+        android:layout_height="70dp" />
 
 
 
